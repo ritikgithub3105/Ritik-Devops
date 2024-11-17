@@ -1,0 +1,10 @@
+pipeline {
+    agent any  // Runs the pipeline on any available agent
+    stages {
+        stage('Hello World') {
+            steps {
+                echo 'Hello, World!'  // This prints to the Jenkins console output
+            }
+        }
+    }
+}
