@@ -1,0 +1,13 @@
+pipeline {
+    agent any  // Runs on any available agent
+    stages {
+        stage('Print Username') {
+            steps {
+                script {
+                    // Prints the username of the person who triggered the build
+                    echo "Build triggered by: ${env.BUILD_USER}"
+                }
+            }
+        }
+    }
+}
