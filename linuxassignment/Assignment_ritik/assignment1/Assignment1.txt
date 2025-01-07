@@ -1,0 +1,27 @@
+1.	pwd
+2.	mkdir linux
+3.	mkdir -p linux/ Assignment-01
+4.	mkdir -p /tmp/dir1
+5.	mkdir -p /tmp/dir2 /tmp/dir3
+6.	rm -rf /tmp/dir3
+7.	touch /tmp/ritik
+8.	echo "This is my first line"> /tmp/ritik
+9.	echo "this is a additional content" >>/tmp/ritik
+10.	echo "last name is my last name"> /tmp/Kumar
+11.	echo "this is line at the beginning" | cat - /tmp/Kumar >/tmp/temp && mv /tmp/temp /tmp/Kumar
+12.	echo -e “This is third line \nThis is fourth line \nThis is fifth line \nThis is sixth line \nThis is seventh line \nThis is eighth line”>> /tmp/Kumar
+
+
+13.	head -5 /tmp/Kumar
+14.	tail -2 /tmp/Kumar
+15.	head -6 /tmp/Kumar | tail -1
+16.	head -8 /tmp/Kumar | tail -6
+17.	ls -a /tmp
+18.	ls -l /tmp | grep '^-'
+19.	ls -al | grep ‘^d’
+20.	cp /tmp/Kumar /tmp/dir2
+21.	cp /tmp/Kumar /tmp/dir2/Kumar.copy
+22.	mv /tmp/ritik /tmp/ritik-Kumar
+23.	mv /tmp/Kumar /tmp/dir1
+24.	echo -n "" > /tmp/dir2/Kumar.copy
+25.	rm /tmp/dir2/Kumar.copy

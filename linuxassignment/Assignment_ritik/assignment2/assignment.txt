@@ -1,0 +1,32 @@
+1.	sudo useradd -m -d /home/neha -s /bin/bash neha
+2.	sudo useradd -m -d /home/Vipul -s /bin/bash Vipul
+3.	sudo useradd -m -d /home/abhishek -s /bin/bash abhishek
+4.	sudo groupadd linux
+5.	sudo groupadd sigma
+6.	sudo usermod -g sigma neha
+7.	sudo usermod -g sigma abhishek
+8.	sudo usermod -aG linux neha
+9.	sudo usermod -aG linux abhishek
+10.	sudo groupadd alpha
+11.	sudo useradd -G linux,alpha -m -d /home/nikhil -s /bin/bash Nikhil
+12.	sudo useradd -G linux,alpha -m -d /home/priyanshi -s /bin/bash priyanshi
+13.	sudo chomd 751 /home/neha
+14.	sudo chomd 751 /home/Vipul
+15.	sudo chomd 751 /home/abhishek
+16.	sudo chomd 751 /home/nikhil
+17.	sudo chomd 751 /home/priyanshi
+18.	sudo mkdir -p /home/neha/team /home/neha/linux
+19.	sudo mkdir -p /home/vipul/team /home/vipul/linux
+20.	sudo mkdir -p /home/abhishek/team /home/abhishek/linux
+21.	sudo mkdir -p /home/nikhil/team /home/nikhil/linux
+22.	sudo mkdir -p /home/priyanshi/team /home/priyanshi/linux
+23.	sudo chmod 770 /home/neha/team
+24.	sudo chmod 770 /home/vipul/team
+25.	sudo chmod 770 /home/abhishek/team
+26.	sudo chmod 770 /home/nikhil/team
+27.	sudo chmod 770 /home/priyanshi/team
+28.	sudo chmod 770 /home/neha/Linux
+29.	sudo chmod 770 /home/vipul/Linux
+30.	sudo chmod 770 /home/abhishek/Linux
+31.	sudo chmod 770 /home/nikhil/Linux
+32.	sudo chmod 770 /home/priyashi/Linux

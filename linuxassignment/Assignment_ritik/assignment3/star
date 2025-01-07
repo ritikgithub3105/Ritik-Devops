@@ -1,0 +1,148 @@
+#!/bin/bash
+
+
+# number of lines to be printed
+lines=$1
+
+# type of pattern
+types=$2
+
+case $types in
+
+	t2)
+		for (( i=1; i<=$lines; i++ ))
+		do
+			for ((j=1; j<=i; j++ ))
+			do
+				echo -n "*"
+			done
+			echo
+		done
+		;;
+
+
+	t1)
+		for (( i=1; i<=$lines; i++ ))
+		do
+			for (( j=$lines; j>i; j-- ))
+			do
+				echo -n " "
+			done
+                        for (( k=i; k>=1; k-- ))
+                        do
+                                echo -n "*"
+			done
+			echo
+		done
+		;;
+
+	t3)
+		# using count variable for manupulating
+		count=1
+                for (( i=1; i<=$lines; i++ ))
+                do
+			
+                        for (( j=$lines; j>i; j-- ))
+                        do
+                                echo -n " "
+                        done
+                        for (( k=count; k>=1; k-- ))
+                        do
+                                echo -n "*"
+			
+                        done
+                        echo
+			count=$(( count + 2 ))
+                done
+                ;;
+
+	t4)
+		# using count variable for manupulating 
+		count=$lines
+		for (( i=1; i<=$lines; i++ ))
+		do
+			for (( j=count; j>=1; j-- ))
+			do
+				echo -n "*"
+			done
+			count=$(( count - 1 ))
+			echo
+
+		done
+		;;
+
+	t5)
+		for (( i=1; i<=$lines; i++ ))
+		do
+			for (( j=i; j>1; j-- ))
+			do
+				echo -n " "
+			done
+			for (( k=i; k<=$lines; k++ ))
+			do
+				echo -n "*"
+			done
+			echo
+
+		done
+		;;
+
+	t6)
+		for (( i=$lines; i>=1; i-- ))
+		do
+			for (( j=$lines; j>i; j-- ))
+			do
+				echo -n " "
+			done
+			for (( k=1; k<=(2*i-1); k++ ))
+			do
+				echo -n "*"
+			done
+			echo
+		done
+	
+		;;
+
+	t7)
+		# using count variable for manupulating
+		count=1
+    		for (( i=1; i<=$lines; i++ ))
+    		do
+        		for (( j=$lines; j>i; j-- ))
+        		do
+            			echo -n " "
+        		done
+        		for (( k=1; k<=count; k++ ))
+        		do
+            			echo -n "*"
+        		done
+        		echo
+        		count=$(( count + 2 ))
+    			done
+
+    		count=$(( 2*$lines-3 ))
+
+    		for (( i=$lines-1; i>=1; i-- ))
+    		do
+        		for (( j=$lines; j>i; j-- ))
+        		do
+            			echo -n " "
+        		done
+        	for (( k=1; k<=count; k++ ))
+        	do
+            		echo -n "*"
+        	done
+        	echo
+        	count=$(( count - 2 ))
+    	done
+    	;;
+
+	*)
+		echo "kindly input correct type"
+		;;
+
+
+
+
+
+esac
