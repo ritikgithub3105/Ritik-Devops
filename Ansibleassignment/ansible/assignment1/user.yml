@@ -1,0 +1,59 @@
+---
+- name: Create UserManager
+  hosts: all
+  become: yes
+  tasks:
+    - name: Creating ninja group
+      group:
+        name: ninja
+        state: present
+
+    - name: Creating user karan
+      user:
+        name: karan
+        group: ninja
+        create_home: true
+        shell: /bin/bash
+        password: "{{ '123' | password_hash('sha512') }}"
+        state: present
+
+    - name: Set home directory permissions for karan
+      file:
+        path: /home/karan
+        owner: karan
+        group: ninja
+        mode: '0750'
+
+    - name: Create shared directories in karan's home
+      file:
+        path: "/home/karan/{{ item }}"
+        state: directory
+        owner: karan
+        group: ninja
+        mode: '0770'  
+      loop:
+        - Team
+        - Ninja
+
+    - name: Change user shell for karan
+      user:
+        name: karan
+        shell: /bin/bash
+
+    - name: List users in ninja group
+      shell: getent group ninja
+      register: ninja_group_info
+
+    - name: Display users in ninja group
+      debug:
+        var: ninja_group_info.stdout
+
+    - name: Delete user karan
+      user:
+        name: karan
+        state: absent
+
+    - name: Delete ninja group
+      group:
+        name: ninja
+        state: absent

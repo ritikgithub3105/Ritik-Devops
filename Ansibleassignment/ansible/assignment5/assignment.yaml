@@ -1,0 +1,8 @@
+- name: Install Kafka
+  hosts: server1
+  become: yes
+
+  tasks:
+    - include_role:
+        name: kafka
+     

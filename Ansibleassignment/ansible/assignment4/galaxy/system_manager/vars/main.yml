@@ -1,0 +1,26 @@
+---
+# vars file for system_manager
+#variables define for software_packages
+software_packages:
+  - git
+  - tree
+  - nginx
+  - curl
+uninstall_software_packages: 
+  - tree
+  - nano 
+
+#variables defines for User Management 
+create_user:
+ - yugesh
+ - rohit 
+ - aman
+
+delete_user:
+ - shubham 
+ - rohit 
+#
+user_update_shell:
+ - aman
+user_change_password:
+ - yugesh

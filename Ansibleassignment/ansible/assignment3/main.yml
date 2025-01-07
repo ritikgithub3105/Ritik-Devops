@@ -1,0 +1,88 @@
+---
+- name: Setup Spring3HibernateAppr
+  hosts: all
+  become: true
+  tasks:
+  
+    - name: Update and upgrade packages
+      apt:
+        update_cache: yes
+        upgrade: yes
+  
+    - name: Install Git
+      apt:
+        name: git
+        state: present
+
+    - name: Install JDK 11
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Install Tomcat9 and admin package
+      apt:
+        name:
+          - tomcat9
+          - tomcat9-admin
+        state: present
+
+    - name: Install MySQL Server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Install Maven
+      apt:
+        name: maven
+        state: present
+
+    - name: Clone the Spring3Hibernate GitHub repository
+      git:
+        repo: https://github.com/opstree/spring3hibernate.git
+        dest: /home/ubuntu/spring3hibernate
+        force: yes
+
+    - name: Resolve dependencies for Spring3HibernateApp
+      command: mvn dependency:resolve
+      args:
+        chdir: /home/ubuntu/spring3hibernate
+
+    - name: Compile Spring3HibernateApp
+      command: mvn compile
+      args:
+        chdir: /home/ubuntu/spring3hibernate
+
+    - name: Run tests for Spring3HibernateApp
+      command: mvn test
+      args:
+        chdir: /home/ubuntu/spring3hibernate
+
+    - name: Package Spring3HibernateApp
+      command: mvn package
+      args:
+        chdir: /home/ubuntu/spring3hibernate
+
+    - name: Install Spring3HibernateApp
+      command: mvn install
+      args:
+        chdir: /home/ubuntu/spring3hibernate
+
+    - name: Copy Spring3HibernateApp WAR to Tomcat webapps directory
+      copy:
+        src: /home/ubuntu/spring3hibernate/target/Spring3HibernateApp.war
+        dest: /var/lib/tomcat9/webapps/
+        remote_src: yes
+
+    - name: Add Tomcat user for manager-gui
+      blockinfile:
+        path: /etc/tomcat9/tomcat-users.xml
+        marker: "<!-- Ansible managed block -->"
+        insertbefore: "</tomcat-users>"
+        block: |
+          <role rolename="manager-gui" />
+          <user username="admin" password="admin" roles="manager-gui" />
+
+    - name: Restart Tomcat9 service to apply changes
+      service:
+        name: tomcat9
+        state: restarted

@@ -1,0 +1,44 @@
+---
+# tasks file for system_manager
+- name: Ensure required software packages are installed 
+  apt: 
+   name: "{{item}}"
+   state: present 
+   update_cache: yes
+  loop: "{{software_packages}}"
+  when: ansible_os_family == 'Debian'
+ 
+- name: Ensure required software packages are uninstalled
+  apt:
+   name: "{{item}}"
+   state: absent
+   update_cache: yes
+  loop: "{{uninstall_software_packages}}"
+#
+# tasks for User Management 
+- name:  To create a system's user
+  user:
+   name: "{{item}}"
+   shell: /bin/bash
+  loop: "{{create_user}}"
+  
+- name:  To delete a system's user
+  user:
+   name: "{{item}}"
+   shell: /bin/bash
+   state: absent
+  loop: "{{delete_user}}"
+
+- name: Update user shell
+  ansible.builtin.user:
+   name: "{{item}}"
+   shell: "/bin/zsh"
+   state: "present"
+  loop: "{{user_update_shell}}"
+
+- name: Set user password
+  ansible.builtin.user:
+   name: "{{item}}"
+   password: "{{ 'shubham30@' | password_hash('sha512') }}"
+  loop: "{{user_change_password}}"
+
