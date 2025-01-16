@@ -1,0 +1,78 @@
+Deployment Strategies and Implementation with Amazon S3 Integration
+
+Research and Understand Deployment Strategies
+
+Recreate Deployment:
+Recreate deployment involves shutting down the current version of the application and deploying the new version. This ensures that only one version of the application is active at a time.
+
+Advantages:
+
+Simplistic approach with minimal infrastructure requirements.
+
+Eliminates issues arising from managing multiple versions.
+
+Disadvantages:
+
+Downtime during deployment affects user experience.
+
+High risk since the new version goes live without prior user feedback.
+
+Rolling Deployment:
+Rolling deployment gradually replaces old application instances with new ones. This is typically done using an Auto Scaling Group (ASG).
+
+Advantages:
+
+No downtime, as some instances remain available.
+
+Easier rollback since not all instances are updated simultaneously.
+
+Disadvantages:
+
+Requires managing multiple versions during the transition.
+
+Prolonged deployment duration.
+
+Blue-Green Deployment:
+Blue-green deployment involves maintaining two identical environments: blue (current version) and green (new version). Traffic is switched from blue to green once the new version is validated.
+
+Advantages:
+
+Zero downtime.
+
+Easy rollback by reverting traffic to the blue environment.
+
+Disadvantages:
+
+Higher infrastructure costs as two environments are maintained simultaneously.
+
+Complex to set up and manage.
+
+A/B Deployment:
+A/B deployment tests multiple versions of the application (A and B) by routing user traffic to both and evaluating performance and user feedback.
+
+Advantages:
+
+Useful for feature testing and user behavior analysis.
+
+Reduces risk by introducing changes incrementally.
+
+Disadvantages:
+
+Complex traffic routing and version management.
+
+May confuse users interacting with different versions.
+
+Canary Deployment:
+Canary deployment releases the new version to a small subset of users or instances before a full rollout. Performance and feedback are monitored.
+
+Advantages:
+
+Reduces risk by testing in a controlled manner.
+
+Provides insights into potential issues before a full deployment.
+
+Disadvantages:
+
+Requires monitoring and feedback systems.
+
+Increased complexity in deployment and traffic management.
